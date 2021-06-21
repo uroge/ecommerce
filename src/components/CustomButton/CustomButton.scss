@@ -1,0 +1,38 @@
+@import '../../sass/base/variables';
+
+.custom-button {
+    min-width: 165px;
+    width: auto;
+    height: 50px;
+    letter-spacing: 0.5px;
+    line-height: 50px;
+    padding: 0 35px 0 35px;
+    font-size: 15px;
+    background-color: $color-black;
+    color: $color-white;
+    text-transform: uppercase;
+    font-weight: bolder;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+  
+    &:hover {
+      background-color: $color-white;
+      color: $color-black;
+      border: 1px solid $color-black;
+    }
+  
+    &.inverted {
+      background-color: $color-white;
+      color: $color-black;
+      border: 1px solid $color-black;
+    }
+  
+    &.inverted:hover {
+      background-color: $color-black;
+      color: $color-white;
+      border: none;
+    }
+}
+  

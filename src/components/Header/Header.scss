@@ -1,0 +1,33 @@
+@import "../../sass/base/variables";
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+
+    &__cart {
+        height: 100%;
+        width: auto;
+    }
+
+    &__options {
+        display: flex;
+        align-items: center;
+        
+        &-single {
+            transition: all .3s ease-in-out;
+            &:not(:last-child) {
+                margin-right: 2rem;
+            }
+
+            &:hover {
+                color: $color-tertiary;
+            }
+
+            text-decoration: none;
+            color: $color-black;
+        }
+    }
+}
+  
