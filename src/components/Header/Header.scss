@@ -33,9 +33,11 @@
     &__wallet {
         margin-right: 1.5rem;
         display: flex;
+        color: $color-secondary;
 
         &-icon {
             margin-right: .6rem;
+            color: $color-tertiary;
         }
     }
 }

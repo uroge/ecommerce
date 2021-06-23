@@ -1,9 +1,10 @@
 import * as actionTypes from '../actions/actionTypes';
+import { addItemToCart } from './products.utils';
 
 const initialState = {
     products: [],
     cart: [],
-    numberOfCartItems: 0
+    numberOfCartItems: localStorage.getItem('numberOfCartItems') ? localStorage.getItem('numberOfCartItems') : 0
 }
 
 const productsReducer = (state = initialState, action) => {
@@ -15,9 +16,12 @@ const productsReducer = (state = initialState, action) => {
             }
 
         case actionTypes.ADD_TO_CART:
+            localStorage.setItem('numberOfCartItems', state.numberOfCartItems + 1);
+            console.log(state.cart)
             return {
                 ...state,
-                cart: [...state.cart, action.payload],
+                // cart: [...state.cart, action.payload],
+                cart: addItemToCart(state.cart, action.payload),
                 numberOfCartItems: state.numberOfCartItems + 1
             }
     
@@ -28,6 +32,7 @@ const productsReducer = (state = initialState, action) => {
             }
 
         case actionTypes.CHECKOUT:
+            localStorage.setItem('numberOfCartItems', 0);
             return {
                 ...state,
                 cart: [],

@@ -11,7 +11,7 @@ const counterReducer = (state = initialState, action) => {
             let price = 0;
 
             action.payload.forEach(product => {
-                price += product.price;
+                price += product.price * product.quantity;
             });
             
             return {
