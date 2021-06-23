@@ -29,5 +29,14 @@
             color: $color-black;
         }
     }
+
+    &__wallet {
+        margin-right: 1.5rem;
+        display: flex;
+
+        &-icon {
+            margin-right: .6rem;
+        }
+    }
 }
   

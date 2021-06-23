@@ -20,3 +20,10 @@ export const getCartProducts = products => {
         payload: products
     }
 }
+
+export const buyProductsHandler = (newWalletValue) => {
+    return {
+        type: actionTypes.CHECKOUT,
+        payload: newWalletValue
+    }
+}
