@@ -5,7 +5,7 @@ import axios from '../../axios/axios';
 import CollectionPreview from '../../components/CollectionPreview/CollectionPreview';
 
 import { useDispatch, useSelector } from "react-redux";
-import { getProducts } from '../../store/actions/actions';
+import { getProducts, getCartProducts } from '../../store/actions/actions';
 
 const HomePage = () => {
     const collections = useSelector(state => state.collections.products);
@@ -16,6 +16,14 @@ const HomePage = () => {
         .then(response => {
             if(response.data) {
                 dispatch(getProducts(Object.values(response.data)));
+            }
+        })
+        .catch(error => console.log(error));
+
+        axios.get('https://ecommerce-5aa23-default-rtdb.firebaseio.com/cart.json')
+        .then(response => {
+            if(response.data) {
+                dispatch(getCartProducts(Object.values(response.data)));
             }
         })
         .catch(error => console.log(error));

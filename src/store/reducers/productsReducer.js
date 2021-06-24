@@ -3,8 +3,7 @@ import { addItemToCart } from './products.utils';
 
 const initialState = {
     products: [],
-    cart: [],
-    numberOfCartItems: localStorage.getItem('numberOfCartItems') ? localStorage.getItem('numberOfCartItems') : 0
+    cart: []
 }
 
 const productsReducer = (state = initialState, action) => {
@@ -16,13 +15,9 @@ const productsReducer = (state = initialState, action) => {
             }
 
         case actionTypes.ADD_TO_CART:
-            localStorage.setItem('numberOfCartItems', state.numberOfCartItems + 1);
-            console.log(state.cart)
             return {
                 ...state,
-                // cart: [...state.cart, action.payload],
-                cart: addItemToCart(state.cart, action.payload),
-                numberOfCartItems: state.numberOfCartItems + 1
+                cart: addItemToCart(state.cart, action.payload)
             }
     
         case actionTypes.GET_CART_PRODUCTS:
@@ -32,7 +27,6 @@ const productsReducer = (state = initialState, action) => {
             }
 
         case actionTypes.CHECKOUT:
-            localStorage.setItem('numberOfCartItems', 0);
             return {
                 ...state,
                 cart: [],

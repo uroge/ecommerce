@@ -27,3 +27,10 @@ export const buyProductsHandler = (newWalletValue) => {
         payload: newWalletValue
     }
 }
+
+export const updateCart = product => {
+    return {
+        type: actionTypes.UPDATE_CART,
+        payload: product
+    }
+}

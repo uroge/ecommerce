@@ -13,6 +13,7 @@ const CollectionItem = ({ item, button }) => {
     const dispatch = useDispatch();
 
     const addProductToCartHandler = async (product) => {
+        console.log('PRODUCT: ', product)
         const existingCartItem = cartItems.find(cartItem => cartItem.id === product.id);
 
         let newItemData = {};
@@ -21,13 +22,14 @@ const CollectionItem = ({ item, button }) => {
             console.log('TRUE')
             cartItems.forEach(cartItem => {
                 if(cartItem.id === product.id) {
-                    newItemData = {...cartItem, cartItem: product.quantity + 1};
+                    console.log('CART ITEM: ', cartItem);
+                    newItemData = {...cartItem, quantity: cartItem.quantity + 1};
 
-                    axios.patch(`/cart/${cartItem.id}.json`, newItemData)
+                    axios.patch(`/cart/${cartItem.name}.json`, newItemData)
                     .then(response => {
-                        console.log(cartItem.id);
-                        console.log(response.data);
-                        dispatch(addProductToCart(newItemData));
+                        console.log(cartItem.quantity);
+                        console.log('ITEM DATA SENT TO DATABASE');
+                        dispatch(addProductToCart(product));
                     })
                     .catch(error => console.log(error));
                 }
@@ -36,10 +38,9 @@ const CollectionItem = ({ item, button }) => {
         } else {
             console.log('FALSE')
             newItemData = {...product, quantity: 1};
-
             axios.put(`/cart/${product.name}.json`, newItemData)
             .then(response => {
-                dispatch(addProductToCart(newItemData));
+                dispatch(addProductToCart(product));
             }).catch(error => console.log(error));
         }
     }
@@ -54,7 +55,7 @@ const CollectionItem = ({ item, button }) => {
         />
         <div className="collection-footer">
             <span className="name">{name}</span>
-            <span className="price">{price}$</span>
+            <span className="price" onClick={() => console.log(cartItems)}>{price}$</span>
         </div>
         {button ? <CustomButton onClick={() => addProductToCartHandler(item)} inverted>Add to cart</CustomButton> : null}
     </div>);
