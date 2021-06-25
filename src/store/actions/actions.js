@@ -21,16 +21,16 @@ export const getCartProducts = products => {
     }
 }
 
-export const buyProductsHandler = (newWalletValue) => {
+export const buyProductsHandler = newWalletValue => {
     return {
         type: actionTypes.CHECKOUT,
         payload: newWalletValue
     }
 }
 
-export const updateCart = product => {
+export const deleteProductFromCart = productToDelete => {
     return {
-        type: actionTypes.UPDATE_CART,
-        payload: product
+        type: actionTypes.DELETE_FROM_CART,
+        payload: productToDelete
     }
 }

@@ -19,6 +19,14 @@ const counterReducer = (state = initialState, action) => {
                 totalPrice: price
             }
 
+        case actionTypes.DELETE_FROM_CART:
+            let priceAfterDeleting = state.totalPrice - (action.payload.price * action.payload.quantity);
+            
+            return {
+                ...state,
+                totalPrice: priceAfterDeleting
+            } 
+
         case actionTypes.CHECKOUT:
             return {
                 ...state,

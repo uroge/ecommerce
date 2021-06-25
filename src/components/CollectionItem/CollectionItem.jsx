@@ -13,22 +13,17 @@ const CollectionItem = ({ item, button }) => {
     const dispatch = useDispatch();
 
     const addProductToCartHandler = async (product) => {
-        console.log('PRODUCT: ', product)
         const existingCartItem = cartItems.find(cartItem => cartItem.id === product.id);
 
         let newItemData = {};
 
         if(existingCartItem) {
-            console.log('TRUE')
             cartItems.forEach(cartItem => {
                 if(cartItem.id === product.id) {
-                    console.log('CART ITEM: ', cartItem);
                     newItemData = {...cartItem, quantity: cartItem.quantity + 1};
 
                     axios.patch(`/cart/${cartItem.name}.json`, newItemData)
                     .then(response => {
-                        console.log(cartItem.quantity);
-                        console.log('ITEM DATA SENT TO DATABASE');
                         dispatch(addProductToCart(product));
                     })
                     .catch(error => console.log(error));
@@ -36,7 +31,6 @@ const CollectionItem = ({ item, button }) => {
             });
 
         } else {
-            console.log('FALSE')
             newItemData = {...product, quantity: 1};
             axios.put(`/cart/${product.name}.json`, newItemData)
             .then(response => {

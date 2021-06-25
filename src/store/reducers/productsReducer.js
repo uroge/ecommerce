@@ -33,6 +33,14 @@ const productsReducer = (state = initialState, action) => {
                 numberOfCartItems: 0
             }
         
+        case actionTypes.DELETE_FROM_CART:
+            const updatedCart = state.cart.filter(cartItem => cartItem.name !== action.payload.name);
+
+            return {
+                ...state,
+                cart: updatedCart
+            }
+            
         default:
             return state;
     }

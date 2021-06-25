@@ -8,7 +8,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getCartProducts } from '../../store/actions/actions';
 import { buyProductsHandler } from '../../store/actions/actions';
 
-// import CollectionPreview from '../../components/CollectionPreview/CollectionPreview';
 import CartItem from '../../components/CartItem/CartItem';
 import CustomButton from '../../components/CustomButton/CustomButton';
 import Loader from '../../components/Loader/Loader';
@@ -40,6 +39,10 @@ const ShopPage = () => {
         .catch(error => console.log(error));
     }, [dispatch]);
 
+    /**
+     * Function that deletes products from the cart and from the store
+     * and recalculates wallet and total price when purchase is done
+    */
     const checkoutHandler = () => {
         if(walletValue > totalPrice) {
             setIsLoading(true);
@@ -58,6 +61,10 @@ const ShopPage = () => {
         }
     }
 
+    /**
+     * Function that sets isModalOpen to false
+     * and closes modal
+    */
     const closeModal = () => {
         setIsModalOpen(false);
     }
